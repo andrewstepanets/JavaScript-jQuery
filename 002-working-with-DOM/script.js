@@ -33,10 +33,12 @@ for (let index = 0; index < listItems.length; index++) {
 // adding number of list items in the header
 
 let heading = document.querySelector('h2');
-let headingText = heading.firstChild.nodeValue;
+heading.className = 'd-flex justify-content-between';
 let totalItems = listItems.length;
+
 let addElementSpan = document.createElement('span');
 let textIntoSpanElement = document.createTextNode(totalItems);
-let spanElementText = addElementSpan.appendChild(textIntoSpanElement);
-let newHeading = headingText + spanElementText;
-heading.textContent = newHeading;
+addElementSpan.appendChild(textIntoSpanElement);
+addElementSpan.className = 'badge badge-warning badge-pill text-right';
+
+heading.appendChild(addElementSpan);
