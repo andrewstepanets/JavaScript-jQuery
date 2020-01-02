@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <style>
+        section {
+            height: 100vh;
+        }
+
+        hr {
+            border-top: 1px dashed white;
+        }
+    </style>
+    <title>Event Delegation</title>
+</head>
+
+<body>
+    <section class="container-fluid">
+        <div class="row d-flex justify-content-center bg-info text-white h-100">
+            <div class="col-md-8">
+                <h1>Example of working with event delegation</h1>
+                <ul class="list-group" id="simpleList">
+                    <li class="list-group-item list-group-item-primary"><a href="#">This is a primary list group item</a></li>
+                    <li class="list-group-item list-group-item-secondary"><a href="#">This is a secondary list group item</a></li>
+                    <li class="list-group-item list-group-item-success"><a href="#">This is a success list group item</a></li>
+                    <li class="list-group-item list-group-item-danger"><a href="#">This is a danger list group item</a></li>
+                    <li class="list-group-item list-group-item-warning"><a href="#">This is a warning list group item</a></li>
+                    <li class="list-group-item list-group-item-info"><a href="#">This is a info list group item</a></li>
+                    <li class="list-group-item list-group-item-light"><a href="#">This is a light list group item</a></li>
+                    <li class="list-group-item list-group-item-dark"><a href="#">This is a dark list group item</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+        function getTarget(e){
+            if(!e){
+                e = window.event; // for old IE8
+            }
+            return e.target || e.srcElement;
+        }
+
+        function  itemDone(e) {
+            var target, elParent, elGrandParent;
+            target = getTarget(e);
+            elParent = target.parentNode;
+            elGrandParent = target.parentNode.parentNode;
+            elGrandParent.removeChild(elParent);
+
+            // 
+            if (e.preventDefault) {
+                e.preventDefault();
+                
+            } else {
+                e.returnValue = false;
+            }
+        }
+
+        var el = document.getElementById('simpleList');
+        if(el.addEventListener){
+            el.addEventListener('click', function(e){
+                itemDone(e);
+            }, false);
+        } else {
+            el.attachEvent('click', function(e){
+                itemDone(e);
+            });
+        }
+    </script>
+</body>
+
+</html>
