@@ -29,6 +29,7 @@ numInput.addEventListener('change', () => {
     reset();
 });
 
+
 p1Button.addEventListener('click', () => {
     if(!gameOver){
         p1Score++;
