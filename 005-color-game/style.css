@@ -23,6 +23,7 @@ h1, span{
     background-color: purple;
     padding: 75px;
     border-radius: 10px;
+    transition: background-color .5s;
 }
 .stripe {
     background-color: white;
