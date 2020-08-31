@@ -1,5 +1,13 @@
 body {
     background: #232323;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 h1, span{
     color: white;    
@@ -15,4 +23,12 @@ h1, span{
     background-color: purple;
     padding: 75px;
     border-radius: 10px;
+}
+.stripe {
+    background-color: white;
+    height: 60px;
+    text-align: center;
+}
+.stripe span {
+    color: black;
 }
